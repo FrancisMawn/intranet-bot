@@ -1,0 +1,33 @@
+{#
+ |------------------------------------------------------------------------------
+ | Heading Block Template
+ |------------------------------------------------------------------------------
+#}
+
+{# Format the heading content according to backend settings #}
+{% set headingContent %}
+    {# Optional hyperlink wrap around the heading text #}
+    {% if block.headingLink|length %}
+        <a href="{{ block.headingLink.url }}" target="{{ block.headingLink.targetString }}">
+    {% endif %}
+    {# Required heading primary copy #}
+    {{ block.headingPrimaryText }}
+    {# Optional "small" heading secondary copy #}
+    {% if block.headingSecondaryText|length %}
+        &#8211; <span class="small">{{ block.headingSecondaryText }}</small>
+    {% endif %}
+    {# Close the hyperlink tag if necessary #}
+    {% if block.headingLink|length %}</a>{% endif %}
+{% endset %}
+
+{# Format the ID string #}
+{% if block.customId|length %}
+    {% set customId = ' id=' ~ block.customId %}
+{% else %}
+    {% set customId = '' %}
+{% endif %}
+
+{# Output the heading block #}
+<{{ block.headingSize }}{{ customId }}{% if block.customClass|length %} class="{{ block.customClass }}"{% endif %}>    
+    {{ headingContent }}
+</{{ block.headingSize }}>

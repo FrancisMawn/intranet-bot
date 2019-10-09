@@ -1,0 +1,32 @@
+{#
+ |------------------------------------------------------------------------------
+ | Row Block Template
+ | -> Container Width (select)
+ | -> Custom Class (string)
+ | -> Custom ID (string)
+ | -> Equal Height Children (lightswitch)
+ |------------------------------------------------------------------------------
+#}
+
+{# Format the equal height class string #}
+{% if block.equalizeColumnsHeight %}
+    {% set equalizerClass = ' wb-eqht' %}
+{% else %}
+    {% set equalizerClass = '' %}
+{% endif %}
+
+{# Format the ID string #}
+{% if block.customId|length %}
+    {% set customId = 'id=' ~ block.customId %}
+{% else %}
+    {% set customId = '' %}
+{% endif %}
+
+{# Output the row block #}
+<div class="{{ block.containerWidth }}">
+    <div {{ customId }} class="row{{ equalizerClass }}{% if block.customClass|length %} {{ block.customClass }}{% endif %}">
+        {% for block in block.children.all() %}
+            {% include '_body/' ~ block.type.handle %}
+        {% endfor %}
+    </div>
+</div>

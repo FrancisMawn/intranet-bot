@@ -1,0 +1,35 @@
+{#
+ |------------------------------------------------------------------------------
+ | Quotation Block Template
+ |------------------------------------------------------------------------------
+#}
+
+{# Format the ID string #}
+{% if block.customId|length %}
+    {% set customId = ' id=' ~ block.customId %}
+{% else %}
+    {% set customId = '' %}
+{% endif %}
+
+{% set thumbnail = {
+    mode: 'crop',
+    width: 150,
+    height: 150,
+    quality: 75,
+    position: 'center-center'
+} %}
+
+<section{{ customId }} class="wb-lbx lbx-gal {{ block.customClass }}">
+    <ul class="list-inline">
+        {% for item in block.galleryItems.all() %}
+            <li>
+                {% set img = item.image.one() ?? null %}
+                {% if img %}                
+                    <a href="{{ img.url }}" title="{{ item.caption }}">
+                        <img src="{{ img.getUrl(thumbnail) }}" alt="{{ item.caption }}" width="150" height="150" class="img-thumbnail">
+                    </a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</section>

@@ -1,0 +1,21 @@
+{#
+ |------------------------------------------------------------------------------
+ | Media Player Block Template
+ |------------------------------------------------------------------------------
+#}
+
+{# Format the ID string #}
+{% if block.customId|length %}
+    {% set customId = ' id=' ~ block.customId %}
+{% else %}
+    {% set customId = '' %}
+{% endif %}
+
+<figure{{ customId }} class="wb-mltmd {{ block.customClass }}" data-wb-mltmd='{"shareUrl": "{{ block.youtubeUrl }}"}'>
+    <video title="{{ block.videoTitle }}">
+        <source type="video/youtube" src="{{ block.youtubeUrl }}" />
+    </video>
+    <figcaption>
+        <p>{{ block.caption|raw }}</p>
+    </figcaption>
+</figure>

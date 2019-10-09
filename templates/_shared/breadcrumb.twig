@@ -1,0 +1,19 @@
+{#
+ |------------------------------------------------------------------------------
+ | Breadcrumb
+ |------------------------------------------------------------------------------
+#}
+
+
+<nav id="wb-bc"  property="breadcrumb">
+    <h2 class="wb-inv">{{ 'You are here:'|t }}</h2>
+    <div class="container">
+        <ol class='breadcrumb'>
+            <li><a href="/en">{{ 'Home'|t }}</a></li>
+            {% for crumb in entry.getAncestors() %}
+                <li>{{ crumb.getLink() }}</li>
+            {% endfor %}
+            <li>{{ entry.title }}</li>
+        </ol>
+    </div>
+</nav>

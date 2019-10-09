@@ -1,0 +1,35 @@
+{% extends '_layout/default' %}
+{% block page %}
+    {% include '_shared/header' %}
+    <main property="mainContentOfPage">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form action="{{ url('search'|t) }}" method="post" name="cse-search-box" role="search">
+                        {{ csrfInput() }}
+                        <div class="input-group input-group-lg">
+                            <label class="wb-inv" for="wb-srch-q">{{ 'header-placeholder-search'|t }}</label>
+                            <input class="wb-srch-q form-control" id="wb-srch-q" list="wb-srch-q-ac" maxlength="500" name="q" placeholder="" type="search" value="">
+                            <datalist></datalist>
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary btn-small" id="wb-srch-sub" name="wb-srch-sub" type="submit">
+                                    <span class="glyphicon-search glyphicon"></span>
+                                    <span class="wb-inv">{{ 'search-txt'|t }}</span>
+                                </button>
+                            </span>
+                            <!-- send query button -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    {% include "_single/_searchResults" %}
+                </div>
+            </div>
+
+        </div>
+        {% include '_shared/pagedetails' %}
+    </main>
+{% endblock %}

@@ -1,0 +1,22 @@
+{#
+ |------------------------------------------------------------------------------
+ | Quotation Block Template
+ |------------------------------------------------------------------------------
+#}
+
+{# Format the ID string #}
+{% if block.customId|length %}
+    {% set customId = ' id=' ~ block.customId %}
+{% else %}
+    {% set customId = '' %}
+{% endif %}
+
+<blockquote{{ customId }}{% if block.customClass|length %} class="{{ block.customClass }}"{% endif %}>
+    <p>{{ block.quote }}</p>
+    {% if block.quoteAuthorName|length or block.quoteSourceName|length %}
+    <footer>
+        {{ block.quoteAuthorName|length ? block.quoteAuthorName : '' }}
+        <cite>{{ block.quoteSourceName|length ? block.quoteSourceName : '' }}</cite>
+    </footer>
+    {% endif %}
+</blockquote>

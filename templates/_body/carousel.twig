@@ -1,0 +1,53 @@
+{#
+ |------------------------------------------------------------------------------
+ | Carousel Block Template
+ |------------------------------------------------------------------------------
+#}
+
+{# Format the Class string #}
+{% set carouselClass = "wb-tabs " %}
+{% set carouselClass = carouselClass ~ block.carouselStyle ~ ' ' %}
+{% set carouselClass = carouselClass ~ block.carouselSpeed ~ ' ' %}
+{% if block.carouselExcludePlay %}
+    {% set carouselClass = carouselClass ~ 'exclude-play ' %}
+{% endif %}
+{% if block.carouselAutoplay %}
+    {% set carouselClass = carouselClass ~ 'playing ' %}
+{% endif %}
+{% set carouselClass = carouselClass ~ block.customClass %}
+
+{# Format the ID string #}
+{% if block.customId|length %}
+    {% set customId = ' id=' ~ block.customId %}
+{% else %}
+    {% set customId = '' %}
+{% endif %}
+
+<div{{ customId }} class="{{ carouselClass }}">
+    <ul role="tablist">
+        {% for item in block.carouselItems.all() %}
+            <li{% if loop.first %} class="active"{% endif %}>
+                <a href="#carousel{{ block.id }}-tabpanel{{ loop.index }}">{{ 'Tab'|t }} {{ loop.index }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="tabpanels">
+        {% for item in block.carouselItems.all() %}
+            <div role="tabpanel" 
+                id="carousel{{ block.id }}-tabpanel{{ loop.index }}"
+                class="{{ loop.first ? 'in':'out' }} {{ block.carouselTransition }}">
+                <a href="{{ item.carouselLink.url }}" target="{{ item.carouselLink.target }}">
+                    <figure>
+                        {% set image = item.carouselImage.one() ?? null %}
+                        {% if image %}
+                            <img src="{{ image.url }}" alt="Panel {{ loop.index }}">
+                        {% endif %}
+                        <figcaption>
+                            <p>{{ item.carouselLink.text }}</p>
+                        </figcaption>
+                    </figure>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>

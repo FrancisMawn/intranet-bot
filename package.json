@@ -1,0 +1,34 @@
+{
+  "name": "nglxp-wet",
+  "version": "1.0.0",
+  "description": "NGLXP WET-BOEW CraftCMS",
+  "main": "web/index.php",
+  "scripts": {
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CSPS-EFPC-IT/nglxp-wet.git"
+  },
+  "author": "Julien Lambert-Charette <julien.lambert-charette@canada.ca>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CSPS-EFPC-IT/nglxp-wet/issues"
+  },
+  "homepage": "https://github.com/CSPS-EFPC-IT/nglxp-wet#readme",
+  "devDependencies": {
+    "copy-webpack-plugin": "^5.0.3",
+    "cross-env": "^5.2.0",
+    "imagemin-mozjpeg": "^8.0.0",
+    "imagemin-webpack-plugin": "^2.4.2",
+    "laravel-mix": "^4.0.15",
+    "sass": "^1.19.0",
+    "sass-loader": "^7.1.0",
+    "vue-template-compiler": "^2.6.10"
+  }
+}

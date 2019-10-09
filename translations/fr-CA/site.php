@@ -1,0 +1,117 @@
+<?php
+
+return [
+    'Canada School of Public Service' => 'École de la fonction publique du Canada',
+    'Government of Canada' => 'Gouvernement du Canada',
+
+    // Header
+    "Language selection" => "Sélection de la langue",
+    "search-intranet" => "Recherche Intranet",
+    "Skip to main content" => "Passer au contenu principal",
+    "Skip to About Government" => "Passer à « Au sujet du gouvernement »",
+    "search" => "recherche",
+    "Sign-on information" => "Information de l'utilisateur actuel",
+    "Signed in as" => "Connecté en tant que",
+    "Account settings" => "Paramètres du compte",
+    "Sign out" => "Fermer la session",
+
+    // Breadcrumb
+    'Home' => 'Accueil',
+
+    // Menu
+    "https://www.canada.ca/en/services/jobs.html" => "https://www.canada.ca/fr/services/emplois.html",
+    "Jobs and the workplace" => "Emplois et milieu de travail",
+    "https://www.canada.ca/en/services/immigration-citizenship.html" => "https://www.canada.ca/fr/services/immigration-citoyennete.html",
+    "Immigration and citizenship" => "Immigration et citoyenneté",
+    "https://travel.gc.ca/" => "https://voyage.gc.ca/",
+    "Travel and tourism" => "Voyage et tourisme",
+    "https://www.canada.ca/en/services/business.html" => "https://www.canada.ca/fr/services/entreprises.html",
+    "Business and industry" => "Entreprises et industrie",
+    "https://www.canada.ca/en/services/benefits.html" => "https://www.canada.ca/fr/services/prestations.html",
+    "Benefits" => "Prestations",
+    "https://www.canada.ca/en/services/health.html" => "https://www.canada.ca/fr/services/sante.html",
+    "Health" => "Santé",
+    "https://www.canada.ca/en/services/taxes.html" => "https://www.canada.ca/fr/services/impots.html",
+    "Taxes" => "Impôts",
+    "https://www.canada.ca/en/services/environment.html" => "https://www.canada.ca/fr/services/environnement.html",
+    "Environment and natural resources" => "Environnement et ressources naturelles",
+    "https://www.canada.ca/en/services/defence.html" => "https://www.canada.ca/fr/services/defense.html",
+    "National security and defence" => "Sécurité nationale et défense",
+    "https://www.canada.ca/en/services/culture.html" => "https://www.canada.ca/fr/services/culture.html",
+    "Culture, history and sport" => "Culture, histoire et sport",
+    "https://www.canada.ca/en/services/policing.html" => "https://www.canada.ca/fr/services/police.html",
+    "Policing, justice and emergencies" => "Services de police, justice et urgences",
+    "https://www.canada.ca/en/services/transport.html" => "https://www.canada.ca/fr/services/transport.html",
+    "Transport and infrastructure" => "Transport et infrastructure",
+    "http://international.gc.ca/world-monde/index.aspx?lang=eng" => "http://international.gc.ca/world-monde/index.aspx?lang=fra",
+    "Canada and the world" => "Canada et le monde",
+    "https://www.canada.ca/en/services/finance.html" => "https://www.canada.ca/fr/services/finance.html",
+    "Money and finances" => "Argent et finances",
+    "https://www.canada.ca/en/services/science.html" => "https://www.canada.ca/fr/services/science.html",
+    "Science and innovation" => "Science et innovation",
+    "/dist/gcweb/ajax/sitemenu-v5-en.html" => "/dist/gcweb/ajax/sitemenu-v5-fr.html",
+
+    // Footer
+    'Report a problem or mistake on this page' => 'Signaler un problème ou une erreur sur cette page',
+    'Share this page' => 'Partagez cette page',
+    'Date modified:' => 'Date de modification :',
+    'About government' => 'Au sujet du gouvernement',
+    'About this site' => 'Au sujet de ce site',
+    'Stay connected' => 'Rester connecté',
+    'Contact us' => 'Contactez-nous',
+
+    // Footer Landscape Links
+    'https://www.canada.ca/en/contact.html' => 'https://www.canada.ca/fr/contact.html',
+    'Departments and agencies' => 'Ministères et organismes',
+    'https://www.canada.ca/en/government/dept.html' => 'https://www.canada.ca/fr/gouvernement/min.html',
+    'Public service and military' => 'Fonction publique et force militaire',
+    'https://www.canada.ca/en/government/publicservice.html' => 'https://www.canada.ca/fr/gouvernement/fonctionpublique.html',
+    'News' => 'Nouvelles',
+    'https://www.canada.ca/en/news.html' => 'https://www.canada.ca/fr/nouvelles.html',
+    'Treaties, laws and regulations' => 'Traités, lois et règlements',
+    'https://www.canada.ca/en/government/system/laws.html' => 'https://www.canada.ca/fr/gouvernement/systeme/lois.html',
+    'Government-wide reporting' => 'Rapports à l\'échelle du gouvernement',
+    'https://www.canada.ca/en/transparency/reporting.html' => 'https://www.canada.ca/fr/transparence/rapports.html',
+    'Prime Minister' => 'Premier ministre',
+    'http://pm.gc.ca/eng' => 'http://pm.gc.ca/fra',
+    'How government works' => 'Comment le gouvernement fonctionne',
+    'https://www.canada.ca/en/government/system.html' => 'https://www.canada.ca/fr/gouvernement/systeme.html',
+    'Open government' => 'Gouvernement ouvert',
+    'http://open.canada.ca/en/' => 'http://ouvert.canada.ca/',
+
+    // Footer Brand Links
+    'Social media' => 'Médias sociaux',
+    'https://www.canada.ca/en/social.html' => 'https://www.canada.ca/fr/sociaux.html',
+    'Mobile applications' => 'Applications mobiles',
+    'https://www.canada.ca/en/mobile.html' => 'https://www.canada.ca/fr/mobile.html',
+    'About Canada.ca' => 'À propos de Canada.ca',
+    'https://www.canada.ca/en/government/about.html' => 'https://www.canada.ca/fr/gouvernement/a-propos.html',
+    'Terms and conditions' => 'Avis',
+    'https://www.canada.ca/en/transparency/terms.html' => 'https://www.canada.ca/fr/transparence/avis.html',
+    'Privacy' => 'Confidentialité',
+    'https://www.canada.ca/en/transparency/privacy.html' => 'https://www.canada.ca/fr/transparence/confidentialite.html',
+
+    // Courses Filters
+    'Title' => 'Titre',
+    'Type' => 'Mode',
+    'Topic' => 'Sujet',
+    'Community' => 'Communauté',
+    'Audience' => 'Public cible',
+    'Business Line' => 'Secteur d\'activité',
+
+    // Course Entry Metadata
+    'Types:' => 'Mode :',
+    'Duration:' => 'Durée :',
+    'Topics:' => 'Sujets :',
+    'Community:' => 'Communauté :',
+    'Audience:' => 'Public cible :',
+    'Business line:' => 'Secteur d\'activité :',
+    'Provider:' => 'Fournisseur :',
+    'hours' => 'heures',
+    'Upcoming offerings' => 'Offres à venir',
+    'To register, you will be prompted to log in to your <a href="https://www.csps-efpc.gc.ca/gccampus-eng.aspx">GCcampus account</a>.' => 'Pour vous inscrire, vous serez invité à vous connecter à votre <a href="https://www.csps-efpc.gc.ca/gccampus-fra.aspx">compte GCcampus</a>.',
+
+    //Search
+    'results-txt' => 'Environ {numberOfEntry} résultats de recherché pour « {searchQuery} »',
+    'search-no-results-txt' => 'Votre recherche pour “{searchQuery}” n’a donné aucun résultat.',
+];

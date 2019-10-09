@@ -1,0 +1,28 @@
+{#
+ |------------------------------------------------------------------------------
+ | Tabs Block Template
+ |------------------------------------------------------------------------------
+#}
+
+{# Format the ID string #}
+{% if block.customId|length %}
+    {% set customId = ' id=' ~ block.customId %}
+{% else %}
+    {% set customId = '' %}
+{% endif %}
+
+<section{{ customId }} class="panel {{ block.panelType }} {{ block.customClass }}">
+    {% if block.panelTitle|length %}
+        <header class="panel-heading">
+            <h5 class="panel-title">{{ block.panelTitle }}</h5>
+        </header>
+    {% endif %}
+    <div class="panel-body">
+        {{ block.panelContent }}
+    </div>
+    {% if block.panelFooter|length %}
+        <footer class="panel-footer">
+            {{ block.panelFooter }}
+        </footer>
+    {% endif %}
+</section>

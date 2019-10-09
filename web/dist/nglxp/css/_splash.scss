@@ -1,0 +1,57 @@
+// Splash Page
+@media screen {
+    #gcwu-sig {
+        height:1.5em
+    }
+    
+    #sp header {
+        margin-top:1.2em
+    }
+    
+    #sp main > div {
+        background:url(../assets/sp-pe-bg.jpg) repeat-x center top;
+        margin-top:10px;
+        padding-top:20px
+    }
+    
+    #sp main h1 {
+        margin:0 0 30px;
+        position:relative;
+        text-align:center
+    }
+    
+    #sp main h2 {
+        font-size:180%
+    }
+}
+
+@media screen and (max-width:991px) {
+    #sp main h2 { 
+        text-align:center 
+    }
+}
+
+@media screen and (min-width:992px) {
+    #sp main {
+        position:relative 
+    } 
+    
+    #sp main > div:before {
+        background:url(../assets/sp-pe-leaf.jpg) no-repeat 50%;
+        content:" ";
+        display:block;
+        height:147px;
+        left:0;
+        position:absolute;
+        top:93px;
+        width:100%
+    }
+        
+    #sp main h2 {
+        min-height:4em
+    }
+        
+    #sp main section + section h2 { 
+        text-align:right 
+    }
+}

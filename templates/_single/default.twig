@@ -1,0 +1,16 @@
+{#
+ |------------------------------------------------------------------------------
+ | Single Default Template
+ |------------------------------------------------------------------------------
+#}
+
+{% extends '_layout/default' %}
+
+{% block page %}
+    {% include '_shared/header' %}
+    <main property="mainContentOfPage">
+        {% include '_body' with { body: entry.body } %}
+        {% include '_shared/pagedetails' %}
+    </main>
+    {% include '_shared/footer' %}
+{% endblock %}

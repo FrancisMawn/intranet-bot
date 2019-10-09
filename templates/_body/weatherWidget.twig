@@ -1,0 +1,28 @@
+{#
+    This is a harcoded weather widget for Ottawa for the demo
+#}
+
+
+{# Format the ID string #}
+{% if block.customId|length %}
+    {% set customId = ' id=' ~ block.customId %}
+{% else %}
+    {% set customId = '' %}
+{% endif %}
+
+<div{{customId}} {% if block.customClass|length %} class="{{ block.customClass }}" {% endif %}>
+    <a class="weatherwidget-io" href="https://forecast7.com/en/45d42n75d70/ottawa/" data-label_1="OTTAWA" data-label_2="WEATHER" data-font="Noto Sans" data-icons="Climacons" data-days="5" data-theme="pure">Ottawa Weather</a>
+</div>
+
+{% js %}
+!function (d, s, id) {
+                var js,
+                    fjs = d.getElementsByTagName(s)[0];
+                if (! d.getElementById(id)) {
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = 'https://weatherwidget.io/js/widget.min.js';
+                    fjs.parentNode.insertBefore(js, fjs);
+                }
+            }(document, 'script', 'weatherwidget-io-js');
+{% endjs %}

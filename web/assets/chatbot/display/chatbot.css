@@ -1,0 +1,33 @@
+.RecastApp>.RecastAppExpander {
+    z-index: inherit;
+}
+
+.RecastApp>.RecastAppChat {
+    border: 3px solid #26374a;
+}
+
+.RecastApp>.RecastAppChat>.RecastAppHeader {
+    border-radius: 0;
+}
+
+.RecastAppMessage>.RecastAppText>p>a:link,
+.RecastAppMessage>.RecastAppText>p>a:visited,
+.RecastAppMessage>.RecastAppText>p>a:active {
+    color: white;
+}
+
+.RecastAppMessage>.RecastAppText>p>a:hover {
+    color: lightgrey;
+}
+
+.Buttons--title:empty {
+    display: none;
+}
+
+.Buttons--title:empty + .Buttons--container {
+    border-top: none !important;
+}
+
+.RecastAppChat--slogan {
+    display: none;
+}

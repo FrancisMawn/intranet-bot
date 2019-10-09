@@ -1,0 +1,25 @@
+{#
+ |------------------------------------------------------------------------------
+ | Button Block Template
+ |------------------------------------------------------------------------------
+#}
+
+{# Format the Class string #}
+{% set btnClass = "btn " %}
+{% set btnClass = btnClass ~ block.buttonType ~ " " %}
+{% set btnClass = btnClass ~ block.buttonSize ~ " " %}
+{% if block.buttonFullWidth %}
+    {% set btnClass = btnClass ~ "btn-block " %}
+{% endif %}
+{% set btnClass = btnClass ~ block.customClass %}
+
+{# Format the ID string #}
+{% if block.customId|length %}
+    {% set customId = ' id=' ~ block.customId %}
+{% else %}
+    {% set customId = '' %}
+{% endif %}
+
+<a{{ customId }} class="{{ btnClass }}" 
+    href="{{ block.blockLink.url }}"
+    target="{{ block.blockLink.target }}">{{ block.blockLink.text }}</a>

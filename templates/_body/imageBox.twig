@@ -1,0 +1,57 @@
+{#
+ |------------------------------------------------------------------------------
+ | Image Box Block Template
+ | TODO: Refactor image-box--figure mecanism
+ |------------------------------------------------------------------------------
+#}
+
+{# Format the ID string #}
+{% if block.customId|length %}
+    {% set customId = ' id=' ~ block.customId %}
+{% else %}
+    {% set customId = '' %}
+{% endif %}
+
+<div{{ customId }}{% if block.customClass|length %} class="{{ block.customClass }}"{% endif %}>
+
+    {# Image Output #}
+    {% set image = block.image.one() ?? null %}
+    {% if image %}
+        {% if block.headingLink|length %}
+            <a href="{{ block.headingLink.url }}" target="{{ block.headingLink.targetString }}">
+        {% endif %}
+        
+        {% if block.customClass == 'image-box--figure' %}
+            <figure>
+        {% endif %}
+
+        <img src="{{ image.url }}" alt="{{ block.altText }}" class="img-responsive thumbnail mrgn-bttm-sm">
+        
+        {% if block.customClass == 'image-box--figure' %}
+                <figcaption>{{ block.headingPrimaryText|raw }}</figcaption>
+            </figure>
+        {% endif %}
+
+        {% if block.headingLink %}
+            </a>
+        {% endif %}
+    {% endif %}
+
+    {# Title Output #}
+    {% if block.customClass != 'image-box--figure' %}
+    <h3 class="h5">
+        {% if block.headingLink|length %}
+            <a href="{{ block.headingLink.url }}" target="{{ block.headingLink.targetString }}">
+        {% endif %}
+
+        {{ block.headingPrimaryText|raw }}
+
+        {% if block.headingLink|length %}
+            </a>
+        {% endif %}
+    </h3>
+    {% endif %}
+
+    {# Rich Text Output #}
+    {{ block.richText }}
+</div>

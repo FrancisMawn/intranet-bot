@@ -1,0 +1,94 @@
+{% set shortlang = currentSite.language|slice(0,2) %}
+
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="no-js lt-ie9" lang="{{ shortlang }}" dir="ltr"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="{{ shortlang }}" dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+<!--<![endif]-->
+
+{% set title %}{{ title is defined ? title ~ ' - ' : entry.title is defined ? entry.title ~ ' - ' }}{{ siteName }}{% endset %}
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="robots" content="noindex, follow">
+    <meta name="title" content="{{ title }}">
+    <meta name="description"
+        content="{{ metaDescription is defined ? metaDescription : entry.metaDescription is defined ? entry.metaDescription }}">
+    <meta name="keywords"
+        content="{{ metaKeywords is defined ? metaKeywords : entry.metaKeywords is defined ? entry.metaKeywords }}">
+    <meta name="author"
+        content="{{ metaCreator is defined ? metaCreator : entry.metaCreator is defined ? entry.metaCreator }}">
+    <meta name="DCTERMS.title" content="{{ title }}">
+    <meta name="DCTERMS.description"
+        content="{{ metaDescription is defined ? metaDescription : entry.metaDescription is defined ? entry.metaDescription }}">
+    <meta name="DCTERMS.creator"
+        content="{{ metaCreator is defined ? metaCreator : entry.metaCreator is defined ? entry.metaCreator }}">
+    <meta name="DCTERMS.language" title="ISO639-2" content="{{ craft.app.language }}">
+    <meta name="DCTERMS.subject"
+        content="{{ metaSubject is defined ? metaSubject : entry.metaSubject is defined ? entry.metaSubject }}">
+    <meta name="DCTERMS.issued" title="W3CDTF"
+        content="{{ dateCreated is defined ? dateCreated : entry.dateCreated is defined ? entry.dateCreated | date("Y-m-d") }}">
+    <meta name="DCTERMS.modified" title="W3CDTF"
+        content="{{ dateUpdated is defined ? dateUpdated : entry.dateUpdated is defined ? entry.dateUpdated | date("Y-m-d") }}">
+    <meta name="DCTERMS.spatial"
+        content="{{ metaSpatial is defined ? metaSpatial : entry.metaSpatial is defined ? entry.metaSpatial }}">
+    <meta name="DCTERMS.type"
+        content="{{ metaType is defined ? metaType : entry.metaType is defined ? entry.metaType }}">
+    <meta name="DCTERMS.source"
+        content="{{ metaSource is defined ? metaSource : entry.metaSource is defined ? entry.metaSource }}">
+    <meta name="DCTERMS.identifier"
+        content="{{ metaCreator is defined ? metaCreator : entry.metaCreator is defined ? entry.metaCreator }}">
+
+    <title> {{ title }} </title>
+
+    <!--[if gte IE 9 | !IE ]><!-->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link href="/dist/gcweb/assets/favicon.ico" rel="icon" type="image/x-icon">
+    <link rel="stylesheet" href="/dist/gcweb/css/theme.min.css">
+    <!--<![endif]-->
+    <link rel="stylesheet" href="/dist/gcweb/css/messages.min.css">
+    <!--Custom stylesheet-->
+    <link rel="stylesheet" href="/dist/custom/digital-government.css">
+
+    <!--<link rel="stylesheet" href="{{ mix('css/app.css') }}">-->
+
+    <!--[if lt IE 9]>
+        <link href="/dist/gcweb/assets/favicon.ico" rel="shortcut icon" />
+        <link rel="stylesheet" href="/dist/gcweb/css/messages-ie.min.css" />
+        <link rel="stylesheet" href="/dist/gcweb/css/ie8-theme.min.css" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="/dist/wet-boew/js/ie8-wet-boew.min.js"></script>
+    <![endif]-->
+
+    <!-- SAP Conversational AI chatbot -->
+    <link rel="stylesheet" href="/assets/chatbot/display/chatbot.css">
+
+    <noscript>
+        <link rel="stylesheet" href="/dist/wet-boew/css/noscript.min.css" /></noscript>
+
+    {% block customStyles %}{% endblock %}
+    {{ head() }}
+</head>
+
+<body {% if bodyClass is defined %}class="{{ bodyClass }}" {% elseif entry %} class="entry--{{ entry.section.handle }}"
+    {% endif %} vocab="http://schema.org/" typeof="WebPage">
+    {{ beginBody() }}
+    {% block page %}{% endblock %}
+    <!--[if gte IE 9 | !IE ]><!-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+    <script src="/dist/wet-boew/js/wet-boew.min.js"></script>
+    <!--<![endif]-->
+    <!--[if lt IE 9]>
+        <script src="/dist/wet-boew/js/ie8-wet-boew2.min.js"></script>
+    <![endif]-->
+    <!--[if lte IE 9]><![endif]-->
+    <script src="/dist/gcweb/js/theme.min.js"></script>
+
+    <!--<script src="{{ mix('js/app.js') }}"></script>-->
+    {% block customScripts %}{% endblock %}
+    {{ endBody() }}
+</body>
+
+</html>

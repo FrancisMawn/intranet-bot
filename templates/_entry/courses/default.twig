@@ -1,0 +1,51 @@
+{#
+ |------------------------------------------------------------------------------
+ | Course Default Entry Type
+ |------------------------------------------------------------------------------
+#}
+
+{% extends '_entry/default' %}
+{% import '_macro/category' as Category %}
+
+{% block page %}
+    {% include '_shared/header' %}
+    <main property="mainContentOfPage">
+        <div class="container">
+            <h1>{{ entry.title }}</h1>
+            <h2>{{ 'Description'|t }}</h2>
+            {{ entry.courseDescription }}
+            <ul>
+                <li><strong>{{ 'Type:'|t }}</strong> {{ Category.toString(entry.deliveryTypes) }}</li>
+                <li><strong>{{ 'Duration:'|t }}</strong> {{ entry.duration }} {{ 'hours'|t }}</li>
+                <li><strong>{{ 'Topics:'|t }}</strong> {{ Category.toString(entry.topics) }}</li>
+                <li><strong>{{ 'Community:'|t }}</strong> {{ Category.toString(entry.communities) }}</li>
+                <li><strong>{{ 'Audience:'|t }}</strong> {{ Category.toString(entry.audiences) }}</li>
+                <li><strong>{{ 'Business line:'|t }}</strong> {{ Category.toString(entry.businessLines) }}</li>
+                <li><strong>{{ 'Provider:'|t }}</strong> {{ Category.toString(entry.contentProvider) }}</li>
+            </ul>
+            <h2>{{ 'Upcoming offerings'|t }}</h2>
+            <p>{{ 'To register, you will be prompted to log in to your <a href="https://www.csps-efpc.gc.ca/gccampus-eng.aspx">GCcampus account</a>.'|t|raw }}</p>
+            <div id="offerings"></div>
+        </div>
+
+        {% include '_shared/pagedetails' %}
+    </main>
+    {% include '_shared/footer' %}
+{% endblock %}
+
+{% block customScripts %}
+    {# @todo: move to its own js file, refactor using basic http auth #}
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: 'https://esb.nglxp.ca:8183/cxf/REST/{{ shortlang }}/offerings/{{ entry.lmsCourseId }}',
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function(response) {
+                    console.log(response);
+                },
+            });
+        });
+    </script>
+{% endblock %}

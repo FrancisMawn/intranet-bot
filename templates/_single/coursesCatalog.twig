@@ -1,0 +1,143 @@
+{#
+ |------------------------------------------------------------------------------
+ | Single Default Template
+ |------------------------------------------------------------------------------
+#}
+
+{% extends '_layout/default' %}
+
+{% block page %}
+    {% include '_shared/header' %}
+    <main property="mainContentOfPage">
+        {% include '_body' with { body: entry.body } %}
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <details open>
+                        <summary><h4>{{ 'Filter courses'|t }}</h4></summary>
+                        <form class="wb-tables-filter" data-bind-to="courses-dataset">
+                            <br>
+                            <div class="form-group">
+                                <label for="c_type">{{ 'Type'|t }}</label>
+                                <select class="form-control" name="c_type" id="c_type" data-column="1">
+                                    <option value="">{{ 'All courses types'|t }}</option>
+                                    {% for category in craft.categories().group('deliveryTypes').all() %}
+                                        <option value="{{ category.title }}">{{ category.title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="c_topic">{{ 'Topic'|t }}</label>
+                                <select class="form-control" name="c_topic" id="c_topic" data-column="2">
+                                    <option value="">{{ 'All topics'|t }}</option>
+                                    {% for category in craft.categories().group('topics').all() %}
+                                        <option value="{{ category.title }}">{{ category.title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="c_community">{{ 'Community'|t }}</label>
+                                <select class="form-control" name="c_community" id="c_community" data-column="3">
+                                    <option value="">{{ 'All communities'|t }}</option>
+                                    {% for category in craft.categories().group('communities').all() %}
+                                        <option value="{{ category.title }}">{{ category.title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="c_audience">{{ 'Audience'|t }}</label>
+                                <select class="form-control" name="c_audience" id="c_audience" data-column="4">
+                                    <option value="">{{ 'All audiences'|t }}</option>
+                                    {% for category in craft.categories().group('audiences').all() %}
+                                        <option value="{{ category.title }}">{{ category.title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="c_business_line">{{ 'Business line'|t }}</label>
+                                <select class="form-control" name="c_business_line" id="c_business_line" data-column="5">
+                                    <option value="">{{ 'All business lines'|t }}</option>
+                                    {% for category in craft.categories().group('businessLines').all() %}
+                                        <option value="{{ category.title }}">{{ category.title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-block btn-primary">{{ 'Filter courses'|t }}</button>
+                                <button type="reset" class="btn btn-block btn-default">{{ 'Clear filters'|t }}</button>
+                            </div>
+                        </form>
+                    </details>
+                </div>
+                <div class="col-md-9">
+                    <table class="wb-tables table table-striped table-hover" id="courses-dataset" aria-live="polite" data-wb-tables='{ 
+                            "columns": [
+                                null,
+                                { "visible": false },
+                                { "visible": false },
+                                { "visible": false },
+                                { "visible": false },
+                                { "visible": false }
+                            ]}'>
+                        <thead>
+                            <tr>
+                                <th>{{ 'Title'|t }}</th>
+                                <th class="hidden">{{ 'Type'|t }}</th>
+                                <th class="hidden">{{ 'Topic'|t }}</th>
+                                <th class="hidden">{{ 'Community'|t }}</th>
+                                <th class="hidden">{{ 'Audience'|t }}</th>
+                                <th class="hidden">{{ 'Business Lines'|t }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% set entries = craft.entries({
+                                section: 'courses',
+                                orderBy: 'title asc',
+                                with: ['deliveryTypes', 'topics', 'communities', 'audiences', 'businessLines']
+                            }) %}
+
+                            {% for course in entries.all() %}
+                                <tr>
+                                    <td>
+                                        <a href="{{ course.url }}">{{ course.title }}</a>
+                                        <br>
+                                        {{ course.courseDescription }}
+                                    </td>
+                                    <td class="hidden">
+                                        {% for category in course.deliveryTypes %}
+                                            {{ category.title ~ '; ' }}
+                                        {% endfor %}
+                                    </td>
+                                    <td class="hidden">
+                                        {% for category in course.topics %}
+                                            {{ category.title ~ '; ' }}
+                                        {% endfor %}
+                                    </td>
+                                    <td class="hidden">
+                                        {% for category in course.communities %}
+                                            {{ category.title ~ '; ' }}
+                                        {% endfor %}
+                                    </td>
+                                    <td class="hidden">
+                                        {% for category in course.audiences %}
+                                            {{ category.title ~ '; ' }}
+                                        {% endfor %}
+                                    </td>
+                                    <td class="hidden">
+                                        {% for category in course.businessLines %}
+                                            {{ category.title ~ '; ' }}
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        {% include '_shared/pagedetails' %}
+    </main>
+    {% include '_shared/footer' %}
+{% endblock %}

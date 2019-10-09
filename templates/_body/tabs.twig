@@ -1,0 +1,23 @@
+{#
+ |------------------------------------------------------------------------------
+ | Tabs Block Template
+ |------------------------------------------------------------------------------
+#}
+
+{# Format the ID string #}
+{% if block.customId|length %}
+    {% set customId = ' id=' ~ block.customId %}
+{% else %}
+    {% set customId = '' %}
+{% endif %}
+
+<div{{ customId }} class="wb-tabs {{ block.customClass }}">
+    <div class="tabpanels">
+        {% for item in block.tabItems.all() %}
+            <details id="details-panel{{ loop.index }}">
+                <summary>{{ item.tabTitle }}</summary>
+                <div>{{ item.tabContent }}</div>
+            </details>
+        {% endfor %}
+    </div>
+</div>

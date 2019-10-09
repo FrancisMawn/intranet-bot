@@ -1,0 +1,39 @@
+{#
+ |------------------------------------------------------------------------------
+ | Column Block Template
+ |------------------------------------------------------------------------------
+#}
+
+{# Concatenate column width classes #}
+{% if block.columnWidth|length %}
+    {% set columnWidthClasses = '' %}
+    {% for option in block.columnWidth %}
+        {% set columnWidthClasses = columnWidthClasses ~ option.value ~ ' ' %}
+    {% endfor %}
+{% else %}
+    {% set columnWidthClasses = 'col-md-12 ' %}
+{% endif %}
+
+{# Concatenate column offset classes #}
+{% if block.columnOffset|length %}
+    {% set columnOffsetClasses = '' %}
+    {% for option in block.columnOffset %}
+        {% set columnOffsetClasses = columnOffsetClasses ~ option.value ~ ' ' %}
+    {% endfor %}
+{% else %}
+    {% set columnOffsetClasses = '' %}
+{% endif %}
+
+{# Format the ID string #}
+{% if block.customId|length %}
+    {% set customId = ' id=' ~ block.customId %}
+{% else %}
+    {% set customId = '' %}
+{% endif %}
+
+{# Output the column #}
+<div{{ customId }} class="{{ columnWidthClasses }}{{ columnOffsetClasses }}{% if block.customClass %} {{ block.customClass }}{% endif %}">
+    {% for block in block.children.all() %}
+        {% include '_body/' ~ block.type.handle %}
+    {% endfor %}
+</div>

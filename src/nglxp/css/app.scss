@@ -1,0 +1,27 @@
+@import 'splash';
+
+// Floating images
+img.pull-left {
+    margin-right: 15px;
+}
+img.pull-right {
+    margin-left: 15px;
+}
+
+// Banner
+.block--banner {
+    background: rgba(36, 56, 80, 0.9);
+    color: #fff;
+    padding: .5em 1em;
+    p {
+        margin-bottom: 0;
+    }
+    a {
+        color: #fff;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

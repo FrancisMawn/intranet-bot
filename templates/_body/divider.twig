@@ -1,0 +1,15 @@
+{#
+ |------------------------------------------------------------------------------
+ | Divider Block Template
+ |------------------------------------------------------------------------------
+#}
+
+{# Format the ID string #}
+{% if block.customId|length %}
+    {% set customId = ' id=' ~ block.customId %}
+{% else %}
+    {% set customId = '' %}
+{% endif %}
+
+{# Block output #}
+<hr{{ customId }}{% if block.customClass|length %} class="{{ block.customClass }}"{% endif %}>

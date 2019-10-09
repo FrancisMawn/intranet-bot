@@ -1,0 +1,39 @@
+{#
+ |------------------------------------------------------------------------------
+ | Image Block Template
+ |------------------------------------------------------------------------------
+#}
+
+{# Format the ID string #}
+{% if block.customId|length %}
+    {% set customId = ' id=' ~ block.customId %}
+{% else %}
+    {% set customId = '' %}
+{% endif %}
+
+{% set imageClass = [
+    'img-responsive',
+    block.imageStyle,
+    block.alignment,
+    block.customClass
+] %}
+
+{# Block output #}
+{% set image = block.image.one() ?? null %}
+{% if image %}
+    
+    {% if block.enableLightbox %}
+    <a href="{{ image.url }}" class="wb-lbx" title="{{ block.altText }}">
+    {% endif %}
+    
+    <img{{ customId }} src="{{ image.url }}" 
+        alt="{{ block.altText }}" 
+        class="{{ imageClass|join(' ') }}" 
+        width="{{ image.width }}" 
+        height="{{ image.height }}">
+
+    {% if block.enableLightbox %}
+    </a>
+    {% endif %}
+    
+{% endif %}

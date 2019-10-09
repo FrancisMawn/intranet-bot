@@ -1,0 +1,17 @@
+{#
+ |------------------------------------------------------------------------------
+ | Category macro
+ |------------------------------------------------------------------------------
+#}
+
+{% macro toString(cats = null) %}
+    {% set categories, categoriesToString = cats.all(), null  %}
+    {% for category in categories %}
+        {% if not loop.last %}
+            {% set categoriesToString = categoriesToString ~ ', ' ~ category %}
+        {% else %}
+            {% set categoriesToString = category %}
+        {% endif %}
+    {% endfor %}
+    {{ categoriesToString }}
+{% endmacro %}

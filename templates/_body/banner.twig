@@ -1,0 +1,16 @@
+{#
+ |------------------------------------------------------------------------------
+ | Banner Block Template
+ |------------------------------------------------------------------------------
+#}
+
+{# Format the ID string #}
+{% if block.customId|length %}
+    {% set customId = ' id=' ~ block.customId %}
+{% else %}
+    {% set customId = '' %}
+{% endif %}
+
+<div{{ customId }} class="block--banner{% if block.customClass|length %} {{ block.customClass }}{% endif %}">
+    {{ block.bannerText }}
+</div>

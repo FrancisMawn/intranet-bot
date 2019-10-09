@@ -1,0 +1,55 @@
+<!--Results-->
+    {% set searchQuery = craft.app.request.getParam('q') %}
+    {% if searchQuery %}
+        {%
+            set entries = craft.entries()
+            .search(searchQuery)
+            .all()
+        %}
+
+        {% if entries|length %}
+            <HR>
+            <p>
+                <strong>
+                    {{ 'results-txt'|t(params={
+                        'searchQuery' :  searchQuery,
+                        'numberOfEntry' :  entries|length,
+                }) }}
+                </strong>
+            </p>
+
+            <article>
+
+                {% for entry in entries %}
+
+                    <h3 class="h4">
+                        <a href="{{ entry.url }}" data-dtm-srchlnknm="1">{{ entry.title }}</a>
+                    </h3>
+                    <p class="mrgn-bttm-0">
+                        <span class="text-success">{{ entry.url }}</span>
+                    </p>
+
+                    {% if entry.dateUpdated %}
+                          <p>{{ entry.dateUpdated|date() }}<b>...</b></p>
+                    {% endif %}
+
+                    {% if entry.summary %}
+                            <p>{{ entry.summary }}</p>
+                    {% endif %}
+
+                {% endfor %}
+
+            </article>
+            {% else %}
+            <p>
+                <strong>
+                    {{ 'search-no-results-txt'|t
+                        (params={
+                            'searchQuery' :  searchQuery,
+                        })
+                    }}
+                </strong>
+            </p>
+
+        {% endif %}
+    {% endif %}

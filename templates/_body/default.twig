@@ -1,0 +1,12 @@
+{#
+ |------------------------------------------------------------------------------
+ | Default Block Template
+ |------------------------------------------------------------------------------
+#}
+
+{# Block output #}
+<div class="block--{{ block.type.handle }}">
+    {% block blockContent %}
+        The template for {{ block.type.handle }} does not exist.
+    {% endblock %}
+</div>
