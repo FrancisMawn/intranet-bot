@@ -237,7 +237,7 @@ categoryGroups:
         hasUrls: false
         uriFormat: null
         template: null
-dateModified: 1570028842
+dateModified: 1570653095
 email:
   fromEmail: $SYSTEM_EMAIL_ADDRESS
   fromName: $SYSTEM_EMAIL_SENDER_NAME
@@ -262,6 +262,8 @@ fieldGroups:
     name: 'Course Registration'
   aae3acdb-e54a-47cb-ba69-ca6500f39405:
     name: Common
+  ad5dab28-cda8-4145-a73c-455b9e0c3b73:
+    name: 'SAP Bot'
   b0337069-2fca-4d88-b6e6-8d814911fc4a:
     name: Grid
   d4a15f50-6d05-4c05-97fa-4fa252722dca:
@@ -1683,6 +1685,27 @@ fields:
       columnType: text
     contentColumnType: text
     fieldGroup: dd364c62-7d29-4ff1-9814-ad590231c56e
+  b4975b14-d0f2-4591-8132-263c8fedf68e:
+    name: 'SAP Bot Query'
+    handle: sapBotQuery
+    instructions: 'Enter something a user could ask help for (i.e. procurement, forms, pheonix, etc.).'
+    searchable: true
+    translationMethod: site
+    translationKeyFormat: null
+    type: craft\fields\Tags
+    settings:
+      allowMultipleSources: false
+      allowLimit: false
+      sources: '*'
+      source: 'taggroup:caab7d16-d655-4b90-a8f2-d54d61549135'
+      targetSiteId: null
+      viewMode: null
+      limit: null
+      selectionLabel: ''
+      localizeRelations: ''
+      validateRelatedElements: ''
+    contentColumnType: string
+    fieldGroup: ad5dab28-cda8-4145-a73c-455b9e0c3b73
   c4b752da-d488-479a-ab58-648146b8b804:
     name: 'Custom ID'
     handle: customId
@@ -1700,6 +1723,23 @@ fields:
       columnType: text
     contentColumnType: text
     fieldGroup: e4089825-4346-4eed-813e-d1032e323d05
+  c4df796e-c072-4305-8309-4252e5697219:
+    name: 'SAP Bot Answer'
+    handle: sapBotAnswer
+    instructions: 'Enter the answer given by the bot for this user query'
+    searchable: true
+    translationMethod: language
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: '1'
+      initialRows: '6'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: ad5dab28-cda8-4145-a73c-455b9e0c3b73
   ca358ba5-2be3-4d29-9b66-c959e31c833e:
     name: 'Delivery Types'
     handle: deliveryTypes
@@ -2993,7 +3033,7 @@ plugins:
     schemaVersion: 1.0.0
   tag-manager:
     edition: standard
-    enabled: false
+    enabled: true
     schemaVersion: 1.0.0
   super-table:
     edition: standard
@@ -3014,6 +3054,21 @@ plugins:
       allowRatingChange: '1'
       allowFontAwesome: '1'
       keepRatingLog: ''
+  sapbot:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+    settings:
+      enabled: '1'
+      apiURL: 'https://api.cai.tools.sap'
+      developerToken: 3849cd9bc0982978d2f3464b5f76abe2
+      channelTokenEn: 4af0f5ba0c2feb4f8516436d866daccf
+      channelIdEn: 60f9bb3d-eaee-413a-8fa3-3b28c62ee85e
+      channelTokenFr: ''
+      channelIdFr: ''
+      userSlug: francismawn
+      botSlug: intranet-bot
+      botVersion: v1
 sections:
   151bd318-9632-44f8-9304-47db451486d0:
     name: Ebooks
@@ -3582,6 +3637,49 @@ sections:
         titleFormat: ''
         sortOrder: 1
     propagationMethod: all
+  e4bd2413-bf30-4513-86e4-4a621d004334:
+    name: 'SAP Bot Query'
+    handle: sapBotQuery
+    type: channel
+    enableVersioning: true
+    propagationMethod: language
+    siteSettings:
+      0f776df8-4195-4588-9f72-337d0aa2d29d:
+        enabledByDefault: true
+        hasUrls: true
+        uriFormat: 'sap-bot-query/{slug}'
+        template: ''
+      2816be6e-0138-4389-86a5-5b827a6dc153:
+        enabledByDefault: true
+        hasUrls: true
+        uriFormat: 'sap-bot-query/{slug}'
+        template: ''
+      9f9e3c36-5381-4e1a-9003-66b89eb4e0a9:
+        enabledByDefault: true
+        hasUrls: true
+        uriFormat: 'sap-bot-query/{slug}'
+        template: ''
+    entryTypes:
+      22d29ffa-3d93-4d3e-9162-5903ba054f44:
+        name: 'SAP Bot Query'
+        handle: sapBotQuery
+        hasTitleField: true
+        titleLabel: Title
+        titleFormat: ''
+        sortOrder: 1
+        fieldLayouts:
+          251203f4-f8ac-4642-87ed-4ab5f77d7257:
+            tabs:
+              -
+                name: 'SAP Bot'
+                sortOrder: 1
+                fields:
+                  b4975b14-d0f2-4591-8132-263c8fedf68e:
+                    required: false
+                    sortOrder: 1
+                  c4df796e-c072-4305-8309-4252e5697219:
+                    required: false
+                    sortOrder: 2
   e7d3d5a3-0dd9-4360-a44a-28b94b6cad53:
     name: 'Videos Catalog'
     handle: videosCatalog
@@ -4138,6 +4236,10 @@ system:
   live: true
   schemaVersion: 3.3.3
   timeZone: America/New_York
+tagGroups:
+  caab7d16-d655-4b90-a8f2-d54d61549135:
+    name: 'SAP Bot Query'
+    handle: sapBotQuery
 users:
   requireEmailVerification: true
   allowPublicRegistration: false

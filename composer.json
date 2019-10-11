@@ -5,6 +5,7 @@
     "craftcms/cms": "3.3.0.1",
     "craftcms/feed-me": "4.1.2",
     "craftcms/redactor": "2.3.3.2",
+    "csps/craft-sapbot": "^1.0",
     "doublesecretagency/craft-starratings": "2.1.1",
     "ether/tags": "1.0.5",
     "fruitstudios/linkit": "1.1.11",
@@ -39,5 +40,11 @@
     "post-root-package-install": [
       "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
     ]
-  }
+  },
+  "repositories": [
+    {
+      "type": "path",
+      "url": "./plugins/*"
+    }
+  ]
 }

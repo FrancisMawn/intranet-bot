@@ -1,0 +1,76 @@
+{% import '_includes/forms' as forms %}
+
+{{ forms.lightswitchField({
+    label: 'SAP Bot Enabled',
+    name: 'enabled',
+    instructions: 'Should the bot be displayed on all pages?',
+    on: settings.enabled,
+    first: true,
+})}}
+
+{{ forms.textField({
+    label: 'SAP Bot API URL',
+    name: 'apiURL',
+    instructions: 'Enter the entry point for the SAP Bot API.',
+    placeholder: 'https://api.cai.tools.sap',
+    value: settings.apiURL
+})}}
+
+{{ forms.textField({
+    label: 'Developer Token',
+    name: 'developerToken',
+    instructions: 'Enter your developer token for your bot. You can find this information in your bot settings.',
+    value: settings.developerToken
+})}}
+
+{{ forms.textField({
+    label: 'Channel Id (English)',
+    name: 'channelIdEn',
+    instructions: 'Enter your webchat channel id. You can find this information in the embedded script.',
+    value: settings.channelIdEn
+})}}
+
+{{ forms.textField({
+    label: 'Channel Token (English)',
+    name: 'channelTokenEn',
+    instructions: 'Enter your webchat channel token. You can find this information in the embedded script.',
+    value: settings.channelTokenEn
+})}}
+
+{{ forms.textField({
+    label: 'Channel Id (French)',
+    name: 'channelIdFr',
+    instructions: 'Enter your webchat channel id. You can find this information in the embedded script.',
+    value: settings.channelIdFr
+})}}
+
+{{ forms.textField({
+    label: 'Channel Token (French)',
+    name: 'channelTokenFr',
+    instructions: 'Enter your webchat channel token. You can find this information in the embedded script.',
+    value: settings.channelTokenFr
+})}}
+
+{{ forms.textField({
+    label: 'User Slug',
+    name: 'userSlug',
+    instructions: 'Enter your user slug. You can find this information in your bot settings.',
+    value: settings.userSlug,
+    placeholder: 'username'
+})}}
+
+{{ forms.textField({
+    label: 'Bot Slug',
+    name: 'botSlug',
+    instructions: 'Enter your bot slug.',
+    value: settings.botSlug,
+    placeholder: 'botname'
+})}}
+
+{{ forms.textField({
+    label: 'Bot Version',
+    name: 'botVersion',
+    instructions: 'Enter your bot version.',
+    value: settings.botVersion,
+    placeholder: 'v1'
+})}}

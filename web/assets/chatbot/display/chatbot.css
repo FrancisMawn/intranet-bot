@@ -1,5 +1,5 @@
 .RecastApp>.RecastAppExpander {
-    z-index: inherit;
+    z-index: 6;
 }
 
 .RecastApp>.RecastAppChat {
@@ -13,11 +13,11 @@
 .RecastAppMessage>.RecastAppText>p>a:link,
 .RecastAppMessage>.RecastAppText>p>a:visited,
 .RecastAppMessage>.RecastAppText>p>a:active {
-    color: white;
+    color: #26374a;
 }
 
 .RecastAppMessage>.RecastAppText>p>a:hover {
-    color: lightgrey;
+    color: #666;
 }
 
 .Buttons--title:empty {
