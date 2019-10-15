@@ -23,7 +23,7 @@ class ApiController extends \craft\web\Controller
         // $this->requirePostRequest();
 
         $request = Craft::$app->getRequest();
-        $answer = 'Sorry, I could not find any information on the subject...';
+        $answer = 'I\'m sorry, I couldn\'t find any information on the subject...';
 
         if ($query = $request->getBodyParam('nlp')['entities']['query'][0]['value'] ?? null) {
             $entry = \craft\elements\Entry::find()
@@ -32,7 +32,7 @@ class ApiController extends \craft\web\Controller
                 ->orderBy('score')
                 ->one();
             // If too many results, return a too generic answer please clarify.
-            $answer = $entry->sapBotQueryAnswer ?? $answer;
+            $answer = $entry->sapBotAnswer ?? $answer;
         };
 
         return $this->asJson([
