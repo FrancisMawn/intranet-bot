@@ -16,7 +16,7 @@ class Plugin extends \craft\base\Plugin
     // Public Properties
     // =========================================================================
 
-    public $hasCpSection = true;
+    public $hasCpSection = false;
     public $hasCpSettings = true;
 
     // Public Methods
