@@ -1,2 +1,40 @@
-/node_modules
+# Environment variables
+/.env
+
+# PHPStorm project folder
+/.idea
+
+# Composer dependencies
 /vendor
+
+# IOS generated file
+.DS_Store
+
+# VSCode project folder
+.vscode/
+
+# Hide deployment key
+bin/deploy_key
+
+# NPM dependencies
+/node_modules
+
+# Remove license from git
+config/license.key
+
+# Remove AWS keypair
+nglxp_keypair.pem
+
+# Moved from src to web/dist
+web/dist/gcweb
+web/dist/nglxp
+web/dist/wet-boew
+
+# Azure Functions files
+!web/assets/chatbot/
+web/assets/chatbot/*
+!web/assets/chatbot/display/
+!web/assets/chatbot/weather/
+web/assets/chatbot/weather/node_modules
+!web/assets/chatbot/octranspo/
+web/assets/chatbot/octranspo/node_modules
