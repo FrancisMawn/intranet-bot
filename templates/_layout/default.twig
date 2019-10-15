@@ -90,9 +90,9 @@
     {% block customScripts %}{% endblock %}
     {{ endBody() }}
 
-    {# Chatbot #}
+    {# Include chatbot if not on splash page and if enabled in the settings #}
     {% set plugin = craft.app.plugins.getPlugin('sapbot', false) %}
-    {% if plugin is defined and plugin('sapbot').settings.enabled %}
+    {% if currentSite.handle != 'default' and plugin is defined and plugin('sapbot').settings.enabled %}
     <script>
         window.webchatMethods = {
             // called at each user message
