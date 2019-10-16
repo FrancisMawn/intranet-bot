@@ -237,7 +237,7 @@ categoryGroups:
         hasUrls: false
         uriFormat: null
         template: null
-dateModified: 1571172022
+dateModified: 1571226407
 email:
   fromEmail: $SYSTEM_EMAIL_ADDRESS
   fromName: $SYSTEM_EMAIL_SENDER_NAME
@@ -3069,6 +3069,8 @@ plugins:
       userSlug: francismawn
       botSlug: intranet-bot
       botVersion: v1
+      weatherApiURL: 'https://api.openweathermap.org/data/2.5'
+      weatherApiToken: 415efa24ed1e560c5e428f39df38c38c
 sections:
   151bd318-9632-44f8-9304-47db451486d0:
     name: Ebooks

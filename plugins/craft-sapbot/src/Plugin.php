@@ -9,6 +9,7 @@ use craft\web\UrlManager;
 use csps\sapbot\models\SettingsModel;
 use csps\sapbot\services\SapBotApi;
 use csps\sapbot\services\TagManager;
+use csps\sapbot\services\Weather;
 use yii\base\Event;
 
 class Plugin extends \craft\base\Plugin
@@ -30,6 +31,7 @@ class Plugin extends \craft\base\Plugin
         $this->setComponents([
             'api'        => SapBotApi::class,
             'tagManager' => TagManager::class,
+            'weather'    => Weather::class,
         ]);
 
         // Register plugin routes.
@@ -64,8 +66,9 @@ class Plugin extends \craft\base\Plugin
 
         Event::on(UrlManager::class, UrlManager::EVENT_REGISTER_SITE_URL_RULES, function(RegisterUrlRulesEvent $event) {
             $event->rules = array_merge($event->rules, [
-                'sapbot/api/query' => 'sapbot/api/query',
+                'sapbot/api/query'           => 'sapbot/api/query',
                 'sapbot/api/query-not-found' => 'sapbot/api/query-not-found',
+                'sapbot/api/weather'         => 'sapbot/api/weather',
             ]);
         });
     }

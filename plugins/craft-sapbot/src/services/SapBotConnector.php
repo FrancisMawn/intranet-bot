@@ -4,7 +4,7 @@ namespace csps\sapbot\services;
 
 use Craft;
 
-class Connector
+class SapBotConnector
 {
     protected $apiURL;
     protected $developerToken;

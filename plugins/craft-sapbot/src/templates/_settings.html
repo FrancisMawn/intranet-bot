@@ -74,3 +74,17 @@
     value: settings.botVersion,
     placeholder: 'v1'
 })}}
+
+{{ forms.textField({
+    label: 'Weather API URL',
+    name: 'weatherApiURL',
+    instructions: 'Enter the entry point for the Weather API.',
+    value: settings.weatherApiURL
+})}}
+
+{{ forms.textField({
+    label: 'Weather API Token',
+    name: 'weatherApiToken',
+    instructions: 'Enter your developer token for the weather api integration.',
+    value: settings.weatherApiToken
+})}}

@@ -16,4 +16,8 @@ class SettingsModel extends Model
     public $userSlug = '';
     public $botSlug = '';
     public $botVersion = '';
+
+    // Weather integration.
+    public $weatherApiURL = '';
+    public $weatherApiToken = '';
 }

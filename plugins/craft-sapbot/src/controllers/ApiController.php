@@ -3,6 +3,7 @@
 namespace csps\sapbot\controllers;
 
 use Craft;
+use csps\sapbot\Plugin;
 
 class ApiController extends \craft\web\Controller
 {
@@ -58,6 +59,27 @@ class ApiController extends \craft\web\Controller
 
         return $this->asJson([
             'replies' => []
+        ]);
+    }
+
+    public function actionWeather()
+    {
+        $request = Craft::$app->getRequest();
+        $answer = 'I don\'t have your location...';
+
+        if ($location = $request->getBodyParam('conversation')['memory']['location'] ?? null) {
+            $language = $request->getBodyParam('nlp')['language'] ?? null;
+            $answer = Plugin::getInstance()->weather->getWeatherFor($location, $language);
+        }
+
+        return $this->asJson([
+            'replies' => [
+                [
+                    'type' => 'text',
+                    'content' => $answer,
+                    'markdown' => true,
+                ]
+            ]
         ]);
     }
 
