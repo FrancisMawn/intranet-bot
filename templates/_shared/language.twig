@@ -12,7 +12,7 @@
     {% if site.handle != 'default' %}
 
         {# Set the locale label #}
-        {% set label = (site.language == 'en-CA') ? 'English' : 'Français' %}
+        {% set label = (site.language == 'en') ? 'English' : 'Français' %}
 
         {# Set the homepage as the default url #}
         {% set url = alias(site.baseUrl) %}
