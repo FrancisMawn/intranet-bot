@@ -4,6 +4,7 @@ namespace csps\sapbot\controllers;
 
 use Craft;
 use csps\sapbot\Plugin;
+use csps\sapbot\records\UnmatchedQuery;
 
 class ApiController extends \craft\web\Controller
 {
@@ -32,15 +33,15 @@ class ApiController extends \craft\web\Controller
                 ->search($query)
                 ->orderBy('score')
                 ->one();
-            // If too many results, return a too generic answer please clarify.
+            // @todo: If too many results, return a too generic answer please clarify?
             $answer = $entry->sapBotAnswer ?? $answer;
         };
 
         return $this->asJson([
             'replies' => [
                 [
-                    'type' => 'text',
-                    'content' => $answer,
+                    'type'     => 'text',
+                    'content'  => $answer,
                     'markdown' => true,
                 ]
             ]
@@ -50,12 +51,12 @@ class ApiController extends \craft\web\Controller
     public function actionQueryNotFound()
     {
         $request = Craft::$app->getRequest();
-        $userInput = $request->getBodyParam('nlp')['source'];
-        $conversationId = $request->getBodyParam('conversation')['id'];
-        // $answer = 'Let me help you, what exactly do you need?';
 
-        Craft::trace($userInput);
-        Craft::trace($conversationId);
+        $record = new UnmatchedQuery();
+        $record->conversationId = $request->getBodyParam('conversation')['id'];
+        $record->source = $request->getBodyParam('nlp')['source'];
+        $record->payload = json_encode($request->getRawBody());
+        $record->save();
 
         return $this->asJson([
             'replies' => []
