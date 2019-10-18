@@ -1,4 +1,4 @@
-dateModified: 1571233500
+dateModified: 1571412522
 email:
   fromEmail: $SYSTEM_EMAIL_ADDRESS
   fromName: $SYSTEM_EMAIL_SENDER_NAME
@@ -2580,7 +2580,7 @@ sections:
     handle: sapBotQuery
     type: channel
     enableVersioning: true
-    propagationMethod: language
+    propagationMethod: all
     siteSettings:
       0f776df8-4195-4588-9f72-337d0aa2d29d:
         enabledByDefault: true
@@ -2588,11 +2588,6 @@ sections:
         uriFormat: 'sap-bot-query/{slug}'
         template: ''
       2816be6e-0138-4389-86a5-5b827a6dc153:
-        enabledByDefault: true
-        hasUrls: true
-        uriFormat: 'sap-bot-query/{slug}'
-        template: ''
-      9f9e3c36-5381-4e1a-9003-66b89eb4e0a9:
         enabledByDefault: true
         hasUrls: true
         uriFormat: 'sap-bot-query/{slug}'
