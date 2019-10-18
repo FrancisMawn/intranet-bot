@@ -1,4 +1,20 @@
+{% extends 'sapbot/_layouts' %}
+
 {% import '_includes/forms' as forms %}
+
+{% set crumbs = [
+    { label: 'SAP Bot', url: url('sapbot') },
+    { label: 'Settings', url: url('sapbot/settings') },
+] %}
+
+{% set fullPageForm = true %}
+
+{% block blockContent %}
+
+<input type="hidden" name="action" value="plugins/save-plugin-settings">
+<input type="hidden" name="pluginHandle" value="sapbot">
+
+{% namespace 'settings' %}
 
 {{ forms.lightswitchField({
     label: 'SAP Bot Enabled',
@@ -88,3 +104,7 @@
     instructions: 'Enter your developer token for the weather api integration.',
     value: settings.weatherApiToken
 })}}
+
+{% endnamespace %}
+
+{% endblock %}

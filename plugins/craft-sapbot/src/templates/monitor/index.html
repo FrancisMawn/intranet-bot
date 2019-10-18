@@ -1,0 +1,37 @@
+{% extends 'sapbot/_layouts' %}
+
+{% import '_includes/forms' as forms %}
+
+{% set selectedTab = 'monitor' %}
+
+{% block actionButton %}
+    <a class="btn submit add icon" href="{{ url('entries/sapBotQuery/new?site=intranetEn') }}">{{ 'New Query' | t('sapbot') }}</a>
+{% endblock %}
+
+{% block blockContent %}
+
+<h2>Unmatched Queries</h2>
+<p>These are questions that users asked for where the bot could not find an appropriate answers.</p>
+
+{% if unmatched | length %}
+<table id="feeds" class="data fullwidth">
+    <thead>
+        <th scope="col">{{ "Source" | t('sapbot') }}</th>
+        <th scope="col">{{ "Date Created" | t('sapbot') }}</th>
+    </thead>
+    <tbody>
+        {% for query in unmatched %}
+            <tr data-id="{{ query.id }}">
+                <td scope="row">
+                    {{ query.source }}
+                </td>
+                <td scope="row">
+                    {{ query.dateCreated }}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+{% endblock %}

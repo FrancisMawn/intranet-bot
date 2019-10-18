@@ -1,0 +1,21 @@
+{% extends '_layouts/cp' %}
+
+{% if title is not defined %}
+    {% set title = 'SAP Bot' %}
+{% endif %}
+
+{% set content %}
+    {% block blockContent %}
+
+    {% endblock %}
+
+    <hr>
+
+    <div id="plugin-footer">
+        <div class="footer-left">
+            {% block footer %}
+
+            {% endblock %}
+        </div>
+    </div>
+{% endset %}

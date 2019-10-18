@@ -4,6 +4,7 @@ namespace csps\sapbot;
 
 use Craft;
 use craft\events\RegisterUrlRulesEvent;
+use craft\helpers\UrlHelper;
 use craft\services\Elements;
 use craft\web\UrlManager;
 use csps\sapbot\models\SettingsModel;
@@ -17,8 +18,10 @@ class Plugin extends \craft\base\Plugin
     // Public Properties
     // =========================================================================
 
+    public static $plugin;
+
     public $schemaVersion = '1.0.0';
-    public $hasCpSection = false;
+    public $hasCpSection = true;
     public $hasCpSettings = true;
 
     // Public Methods
@@ -27,6 +30,8 @@ class Plugin extends \craft\base\Plugin
     public function init()
     {
         parent::init();
+
+        self::$plugin = $this;
 
         // Define plugin components.
         $this->setComponents([
@@ -42,6 +47,13 @@ class Plugin extends \craft\base\Plugin
         $this->registerEvents();
     }
 
+    public function getSettingsResponse()
+    {
+        Craft::$app->controller->redirect(
+            UrlHelper::cpUrl('sapbot/settings')
+        );
+    }
+
     // Protected Methods
     // =========================================================================
 
@@ -50,18 +62,13 @@ class Plugin extends \craft\base\Plugin
         return new SettingsModel();
     }
 
-    protected function settingsHtml()
-    {
-        return Craft::$app->getView()->renderTemplate('sapbot/_settings', [
-            'settings' => $this->getSettings()
-        ]);
-    }
-
     protected function registerRoutes()
     {
         Event::on(UrlManager::class, UrlManager::EVENT_REGISTER_CP_URL_RULES, function(RegisterUrlRulesEvent $event) {
             $event->rules = array_merge($event->rules, [
-                'sapbot/test' => 'sapbot/test/response',
+                'sapbot/test'     => 'sapbot/test/response',
+                'sapbot/settings' => 'sapbot/base/settings',
+                'sapbot/monitor'  => 'sapbot/monitor/index',
             ]);
         });
 
