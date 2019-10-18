@@ -6,6 +6,10 @@ use craft\base\Model;
 
 class SettingsModel extends Model
 {
+    // @todo: Move some configurations to environmental settings.
+    // https://docs.craftcms.com/v3/extend/environmental-settings.html
+
+    // SAP Bot configurations.
     public $enabled = true;
     public $apiURL = '';
     public $developerToken = '';

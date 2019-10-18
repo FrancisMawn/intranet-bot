@@ -30,6 +30,7 @@ class Install extends Migration
     {
         $this->createTable('{{%sapbot_unmatchedquery}}', [
             'id'             => $this->primaryKey(),
+            // @todo: 'language' => $this->string(),
             'conversationId' => $this->string(),
             'source'         => $this->text(),
             'payload'        => $this->json(),
