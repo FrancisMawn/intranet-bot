@@ -66,9 +66,11 @@ class Plugin extends \craft\base\Plugin
     {
         Event::on(UrlManager::class, UrlManager::EVENT_REGISTER_CP_URL_RULES, function(RegisterUrlRulesEvent $event) {
             $event->rules = array_merge($event->rules, [
-                'sapbot/test'     => 'sapbot/test/response',
-                'sapbot/settings' => 'sapbot/base/settings',
-                'sapbot/monitor'  => 'sapbot/monitor/index',
+                'sapbot/test'                               => 'sapbot/test/response',
+                'sapbot/settings'                           => 'sapbot/base/settings',
+                'sapbot/monitor'                            => 'sapbot/monitor/index',
+                'sapbot/monitor/delete'                     => 'sapbot/monitor/delete',
+                'sapbot/monitor/conversation' => 'sapbot/monitor/conversation',
             ]);
         });
 
