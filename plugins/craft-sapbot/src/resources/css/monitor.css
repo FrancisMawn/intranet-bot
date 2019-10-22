@@ -2,6 +2,18 @@
     max-width: 300px;
 }
 
+.monitor-modal .body {
+    height: 100%;
+    overflow: auto;
+    height: calc(100% - 128px);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.monitor-modal .body.ready {
+    opacity: 1;
+}
+
 .monitor-modal .spinner {
     position: absolute;
     top: calc(50% - 24px);
@@ -9,6 +21,21 @@
 }
 
 .monitor-modal .conversation li {
+    width: fit-content;
+    padding: 4px 8px;
+    border-radius: 3px;
     margin-bottom: 24px;
-    border-bottom: 1px solid #eaeaea;
+}
+
+.monitor-modal .conversation li.bot {
+    background: #333f4c;
+    color: white;
+}
+
+.monitor-modal .conversation li.user {
+    background: #eee;
+}
+
+.monitor-modal .conversation li.unmatched {
+    background: #ffdc5d;
 }

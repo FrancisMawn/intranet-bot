@@ -3,6 +3,7 @@
 {% import '_includes/forms' as forms %}
 
 {% do view.registerAssetBundle('csps\\sapbot\\web\\assets\\MonitorAssets') %}
+{% do view.registerJs('new Craft.SapMonitor();') %}
 
 {% set selectedTab = 'monitor' %}
 
@@ -45,15 +46,3 @@
 {% endif %}
 
 {% endblock %}
-
-{% js %}
-    var adminTable = new Craft.AdminTable({
-        tableSelector: '#monitor',
-        noObjectsSelector: '#noqueries',
-        //newObjectBtnSelector: '#newfeedcontainer',
-        sortable: true,
-        //reorderAction: 'feed-me/feeds/reorder-feeds',
-        deleteAction: 'sapbot/monitor/delete',
-        confirmDeleteMessage: 'Are you sure you want to delete this entry?'
-    });
-{% endjs %}

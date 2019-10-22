@@ -1,5 +1,12 @@
 <ul class="conversation">
 {% for message in conversation.messages %}
-    <li>{{ message.attachment.content }}</li>
+    {% if message.participant == botId %}
+        {% set class = 'bot' %}
+    {% elseif message.id == unmatchedId %}
+        {% set class = 'unmatched' %}
+    {% else %}
+        {% set class = 'user' %}
+    {% endif %}
+    <li class="{{ class }}">{{ message.attachment.content }}</li>
 {% endfor %}
 </ul>

@@ -3,6 +3,8 @@
 namespace csps\sapbot\controllers;
 
 use Craft;
+use craft\helpers\ArrayHelper;
+use craft\helpers\Json;
 use craft\web\Controller;
 use csps\sapbot\Plugin;
 use csps\sapbot\records\UnmatchedQuery;
@@ -54,10 +56,14 @@ class MonitorController extends Controller
             $unmatchedQuery->conversationId
         );
 
+        // Get the bot id to differentiate the messages when printing out the conversation.
+        $botId = ArrayHelper::firstWhere($conversation->participants, 'isBot', true)->id;
+
+        // Get the id of the unmatched query so that we can highlight it in the conversation.
+        $unmatchedId = Json::decode($unmatchedQuery->payload)['nlp']['uuid'];
+
         // Render conversation using the template file.
-        $html = $this->getView()->renderTemplate('sapbot/monitor/conversation', [
-            'conversation' => $conversation,
-        ]);
+        $html = $this->getView()->renderTemplate('sapbot/monitor/conversation', compact('conversation', 'botId', 'unmatchedId'));
 
         return $this->asJson([
             'html' => $html,
