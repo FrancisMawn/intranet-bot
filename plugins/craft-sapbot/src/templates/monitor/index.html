@@ -2,31 +2,41 @@
 
 {% import '_includes/forms' as forms %}
 
+{% do view.registerAssetBundle('csps\\sapbot\\web\\assets\\MonitorAssets') %}
+
 {% set selectedTab = 'monitor' %}
 
 {% block actionButton %}
-    <a class="btn submit add icon" href="{{ url('entries/sapBotQuery/new?site=intranetEn') }}">{{ 'New Query' | t('sapbot') }}</a>
+    <a class="btn submit add icon" href="{{ url('entries/sapBotQuery/new') }}">{{ 'New Query' | t('sapbot') }}</a>
 {% endblock %}
 
 {% block blockContent %}
 
 <h2>Unmatched Queries</h2>
-<p>These are questions that users asked for where the bot could not find an appropriate answers.</p>
+<p>These are questions for which the bot could not find an appropriate answer.</p>
+
+<div id="noqueries" {% if unmatched %} class="hidden"{% endif %}>
+    <p>{{ "No queries exist yet." }}</p>
+</div>
 
 {% if unmatched | length %}
-<table id="feeds" class="data fullwidth">
+<table id="monitor" class="data fullwidth collapsible">
     <thead>
         <th scope="col">{{ "Source" | t('sapbot') }}</th>
         <th scope="col">{{ "Date Created" | t('sapbot') }}</th>
+        <th class="thin" colspan="1"></th>
     </thead>
     <tbody>
         {% for query in unmatched %}
-            <tr data-id="{{ query.id }}">
+            <tr class="unmatched-query" data-id="{{ query.id }}" data-name="{{ query.source }}">
                 <td scope="row">
-                    {{ query.source }}
+                    <a href="#" class="source">{{ query.source }}</a>
                 </td>
                 <td scope="row">
                     {{ query.dateCreated }}
+                </td>
+                <td class="thin action">
+                    <a class="delete icon" title="{{ 'Delete' }}" role="button"></a>
                 </td>
             </tr>
         {% endfor %}
@@ -35,3 +45,15 @@
 {% endif %}
 
 {% endblock %}
+
+{% js %}
+    var adminTable = new Craft.AdminTable({
+        tableSelector: '#monitor',
+        noObjectsSelector: '#noqueries',
+        //newObjectBtnSelector: '#newfeedcontainer',
+        sortable: true,
+        //reorderAction: 'feed-me/feeds/reorder-feeds',
+        deleteAction: 'sapbot/monitor/delete',
+        confirmDeleteMessage: 'Are you sure you want to delete this entry?'
+    });
+{% endjs %}

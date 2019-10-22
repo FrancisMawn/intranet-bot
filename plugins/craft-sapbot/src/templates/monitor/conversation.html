@@ -1,0 +1,5 @@
+<ul class="conversation">
+{% for message in conversation.messages %}
+    <li>{{ message.attachment.content }}</li>
+{% endfor %}
+</ul>

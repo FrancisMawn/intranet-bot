@@ -1,0 +1,9 @@
+.monitor-modal {
+    max-width: 300px;
+}
+
+.monitor-modal .spinner {
+    position: absolute;
+    top: calc(50% - 24px);
+    left: calc(50% - 24px);
+}
