@@ -2,7 +2,7 @@
 {% for message in conversation.messages %}
     {% if message.participant == botId %}
         {% set class = 'bot' %}
-    {% elseif message.id == unmatchedId %}
+    {% elseif message.attachment.content == source %}
         {% set class = 'unmatched' %}
     {% else %}
         {% set class = 'user' %}
