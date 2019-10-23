@@ -7,6 +7,7 @@ use craft\helpers\ArrayHelper;
 use craft\web\Controller;
 use csps\sapbot\Plugin;
 use csps\sapbot\records\UnmatchedQuery;
+use GuzzleHttp\Exception\GuzzleException;
 
 class MonitorController extends Controller
 {
@@ -15,17 +16,14 @@ class MonitorController extends Controller
 
     public function actionIndex()
     {
-        $variables = [
+        return $this->renderTemplate('sapbot/monitor/index', [
             'unmatched' => $this->getUnmatchedQueries(),
-        ];
-
-        return $this->renderTemplate('sapbot/monitor/index', $variables);
+        ]);
     }
 
     public function reorderQueries()
     {
         $this->requirePostRequest();
-        $this->requireAjaxRequest();
     }
 
     public function actionDelete()
@@ -43,6 +41,8 @@ class MonitorController extends Controller
 
     public function actionConversation()
     {
+        $this->requirePostRequest();
+
         $request = Craft::$app->getRequest();
 
         // Fetch unmatched query record.
@@ -50,23 +50,27 @@ class MonitorController extends Controller
             (int) $request->post('entryId')
         );
 
-        // Get conversation from sap API.
-        $conversation = Plugin::$plugin->api->conversations()->get(
-            $unmatchedQuery->conversationId
-        );
+        try {
+            // Get conversation from sap API.
+            $conversation = Plugin::$plugin->api->conversations()->get(
+                $unmatchedQuery->conversationId
+            );
+        } catch (GuzzleException $e) {
+            return $this->asJson(['html' => "<code class='error'>{$e->getMessage()}</code>"]);
+        }
 
         // Get the bot id to differentiate the messages when printing out the conversation.
         $botId = ArrayHelper::firstWhere($conversation->participants, 'isBot', true)->id;
 
-        // Used to identify the unmatched query within the conversation.
+        // Used to highlight the unmatched query within the conversation.
         $source = $unmatchedQuery->source;
 
         // Render conversation using the template file.
-        $html = $this->getView()->renderTemplate('sapbot/monitor/conversation', compact('conversation', 'botId', 'source'));
+        $html = $this->getView()->renderTemplate('sapbot/monitor/conversation', compact(
+            'conversation', 'botId', 'source'
+        ));
 
-        return $this->asJson([
-            'html' => $html,
-         ]);
+        return $this->asJson(['html' => $html]);
     }
 
     // Protected Methods
@@ -76,22 +80,14 @@ class MonitorController extends Controller
     {
         return UnmatchedQuery::find()
             ->select(['*'])
-            ->where([
-                'id' => $entryId,
-            ])
+            ->where(['id' => $entryId])
             ->one();
     }
 
     protected function getUnmatchedQueries()
     {
         return UnmatchedQuery::find()
-            ->select([
-                'id',
-                'source',
-                'dateCreated',
-                'dateUpdated',
-                'uid',
-            ])
+            ->select(['*'])
             ->all();
     }
 

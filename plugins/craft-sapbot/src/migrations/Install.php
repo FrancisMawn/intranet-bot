@@ -28,9 +28,9 @@ class Install extends Migration
 
     protected function createTables()
     {
-        $this->createTable('{{%sapbot_unmatchedquery}}', [
+        $this->createTable('{{%sapbot_monitor}}', [
             'id'             => $this->primaryKey(),
-            // @todo: 'language' => $this->string(),
+            'language'       => $this->string(),
             'conversationId' => $this->string(),
             'source'         => $this->text(),
             'payload'        => $this->json(),
@@ -43,6 +43,6 @@ class Install extends Migration
 
     protected function removeTables()
     {
-        $this->dropTableIfExists('{{%sapbot_unmatchedquery}}');
+        $this->dropTableIfExists('{{%sapbot_monitor}}');
     }
 }

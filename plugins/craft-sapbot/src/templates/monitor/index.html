@@ -23,6 +23,7 @@
 {% if unmatched | length %}
 <table id="monitor" class="data fullwidth collapsible">
     <thead>
+        <th scope="col">{{ "Language" | t('sapbot') }}</th>
         <th scope="col">{{ "Source" | t('sapbot') }}</th>
         <th scope="col">{{ "Date Created" | t('sapbot') }}</th>
         <th class="thin" colspan="1"></th>
@@ -31,7 +32,10 @@
         {% for query in unmatched %}
             <tr class="unmatched-query" data-id="{{ query.id }}" data-name="{{ query.source }}">
                 <td scope="row">
-                    <a href="#" class="source">{{ query.source }}</a>
+                    {{ query.language }}
+                </td>
+                <td scope="row">
+                    <a class="source">{{ query.source }}</a>
                 </td>
                 <td scope="row">
                     {{ query.dateCreated }}

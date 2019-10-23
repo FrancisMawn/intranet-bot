@@ -54,6 +54,7 @@ class ApiController extends \craft\web\Controller
 
         $record = new UnmatchedQuery();
         $record->conversationId = $request->getBodyParam('conversation')['id'];
+        $record->language = $request->getBodyParam('conversation')['language'];
         $record->source = $request->getBodyParam('nlp')['source'];
         $record->payload = $request->getRawBody();
         $record->save();

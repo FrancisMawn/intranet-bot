@@ -11,6 +11,6 @@ class UnmatchedQuery extends ActiveRecord
 
     public static function tableName()
     {
-        return '{{%sapbot_unmatchedquery}}';
+        return '{{%sapbot_monitor}}';
     }
 }
