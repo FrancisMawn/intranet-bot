@@ -11,8 +11,8 @@
     }
 </script>
 <script src="/scripts/webchat.js"
-        channelId="{{ plugin('sapbot').settings.getChannelIdEn() }}"
-        token="{{ plugin('sapbot').settings.getChannelTokenEn() }}"
+        channelId="{{ plugin('sapbot').settings.get('channelIdEn') }}"
+        token="{{ plugin('sapbot').settings.get('channelTokenEn') }}"
         id="cai-webchat">
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>

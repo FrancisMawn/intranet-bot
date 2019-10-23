@@ -13,7 +13,7 @@ class SapBotConnector
     public function __construct(SapBotApi $sapBotApi)
     {
         $this->apiURL = $sapBotApi->settings->apiURL;
-        $this->developerToken = $sapBotApi->settings->developerToken;
+        $this->developerToken = $sapBotApi->settings->get('developerToken');
         $this->client = $this->createClient();
     }
 

@@ -14,8 +14,8 @@ class BaseApi
     public function __construct(SapBotApi $sapBotApi)
     {
         $this->client = $sapBotApi->getConnector();
-        $this->userSlug = $sapBotApi->settings->userSlug;
-        $this->botSlug = $sapBotApi->settings->botSlug;
-        $this->botVersion = $sapBotApi->settings->botVersion;
+        $this->userSlug = $sapBotApi->settings->get('userSlug');
+        $this->botSlug = $sapBotApi->settings->get('botSlug');
+        $this->botVersion = $sapBotApi->settings->get('botVersion');
     }
 }

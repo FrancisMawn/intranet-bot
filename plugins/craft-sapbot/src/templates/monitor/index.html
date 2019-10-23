@@ -23,9 +23,9 @@
 {% if unmatched | length %}
 <table id="monitor" class="data fullwidth collapsible">
     <thead>
-        <th scope="col">{{ "Language" | t('sapbot') }}</th>
-        <th scope="col">{{ "Source" | t('sapbot') }}</th>
-        <th scope="col">{{ "Date Created" | t('sapbot') }}</th>
+        <th scope="col" data-attribute="language" class="orderable">{{ "Language" | t('sapbot') }}</th>
+        <th scope="col" data-attribute="source" class="orderable">{{ "Source" | t('sapbot') }}</th>
+        <th scope="col" data-attribute="dateCreated" class="orderable">{{ "Date Created" | t('sapbot') }}</th>
         <th class="thin" colspan="1"></th>
     </thead>
     <tbody>

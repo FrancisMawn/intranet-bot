@@ -4,7 +4,7 @@ namespace csps\sapbot\models;
 
 use Craft;
 use craft\base\Model;
-use craft\behaviors\EnvAttributeParserBehavior;
+use craft\helpers\StringHelper;
 
 class SettingsModel extends Model
 {
@@ -24,43 +24,14 @@ class SettingsModel extends Model
     public $weatherApiURL = '';
     public $weatherApiToken = '';
 
-    public function getDeveloperToken(): string
+    public function get($config)
     {
-        return Craft::parseEnv($this->developerToken);
+        // Handle environmental configs.
+        if (StringHelper::startsWith($this->{$config}, '$SAPBOT_')) {
+            return Craft::parseEnv($this->{$config});
+        }
+
+        return $this->{$config};
     }
 
-    public function getChannelTokenEn(): string
-    {
-        return Craft::parseEnv($this->channelTokenEn);
-    }
-
-    public function getChannelIdEn(): string
-    {
-        return Craft::parseEnv($this->channelIdEn);
-    }
-
-    public function getChannelTokenFr(): string
-    {
-        return Craft::parseEnv($this->channelTokenFr);
-    }
-
-    public function getChannelIdFr(): string
-    {
-        return Craft::parseEnv($this->channelIdFr);
-    }
-
-    public function getUserSlug(): string
-    {
-        return Craft::parseEnv($this->userSlug);
-    }
-
-    public function getBotSlug(): string
-    {
-        return Craft::parseEnv($this->botSlug);
-    }
-
-    public function getBotVersion(): string
-    {
-        return Craft::parseEnv($this->botVersion);
-    }
 }
