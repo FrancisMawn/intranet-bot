@@ -3,10 +3,12 @@
 namespace csps\sapbot;
 
 use Craft;
+use craft\events\RegisterTemplateRootsEvent;
 use craft\events\RegisterUrlRulesEvent;
 use craft\helpers\UrlHelper;
 use craft\services\Elements;
 use craft\web\UrlManager;
+use craft\web\View;
 use csps\sapbot\models\SettingsModel;
 use csps\sapbot\services\SapBotApi;
 use csps\sapbot\services\TagManager;
@@ -45,6 +47,9 @@ class Plugin extends \craft\base\Plugin
 
         // Register plugin event hooks.
         $this->registerEvents();
+
+        // Register template root and hooks.
+        $this->registerTemplates();
     }
 
     public function getSettingsResponse()
@@ -66,10 +71,10 @@ class Plugin extends \craft\base\Plugin
     {
         Event::on(UrlManager::class, UrlManager::EVENT_REGISTER_CP_URL_RULES, function(RegisterUrlRulesEvent $event) {
             $event->rules = array_merge($event->rules, [
-                'sapbot/test'                               => 'sapbot/test/response',
-                'sapbot/settings'                           => 'sapbot/base/settings',
-                'sapbot/monitor'                            => 'sapbot/monitor/index',
-                'sapbot/monitor/delete'                     => 'sapbot/monitor/delete',
+                'sapbot/test'                 => 'sapbot/test/response',
+                'sapbot/settings'             => 'sapbot/base/settings',
+                'sapbot/monitor'              => 'sapbot/monitor/index',
+                'sapbot/monitor/delete'       => 'sapbot/monitor/delete',
                 'sapbot/monitor/conversation' => 'sapbot/monitor/conversation',
             ]);
         });
@@ -88,5 +93,17 @@ class Plugin extends \craft\base\Plugin
         // Synchronize tags with sap synonyms.
         Event::on(Elements::class, Elements::EVENT_BEFORE_SAVE_ELEMENT, [$this->tagManager, 'beforeSaveElement']);
         Event::on(Elements::class, Elements::EVENT_AFTER_DELETE_ELEMENT, [$this->tagManager, 'afterDeleteElement']);
+    }
+
+    protected function registerTemplates()
+    {
+        Event::on(View::class, View::EVENT_REGISTER_SITE_TEMPLATE_ROOTS, function(RegisterTemplateRootsEvent $event) {
+            $event->roots['sapbot'] = __DIR__ . '/templates';
+        });
+
+        // Register a template hook to output the webchat embedded script.
+        Craft::$app->view->hook('sapbot.webchat', function(array &$context) {
+            return Craft::$app->view->renderTemplate('sapbot/webchat');
+        });
     }
 }

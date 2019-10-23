@@ -32,63 +32,76 @@
     value: settings.apiURL
 })}}
 
-{{ forms.textField({
+{{ forms.autosuggestField({
+    id: 'developer-token',
     label: 'Developer Token',
     name: 'developerToken',
     instructions: 'Enter your developer token for your bot. You can find this information in your bot settings.',
-    value: settings.developerToken
+    value: settings.developerToken,
+    suggestEnvVars: true
 })}}
 
-{{ forms.textField({
+{{ forms.autosuggestField({
+    id: 'channel-id-en',
     label: 'Channel Id (English)',
     name: 'channelIdEn',
     instructions: 'Enter your webchat channel id. You can find this information in the embedded script.',
-    value: settings.channelIdEn
+    value: settings.channelIdEn,
+    suggestEnvVars: true
 })}}
 
-{{ forms.textField({
+{{ forms.autosuggestField({
+    id: 'channel-token-en',
     label: 'Channel Token (English)',
     name: 'channelTokenEn',
     instructions: 'Enter your webchat channel token. You can find this information in the embedded script.',
-    value: settings.channelTokenEn
+    value: settings.channelTokenEn,
+    suggestEnvVars: true
 })}}
 
-{{ forms.textField({
+{{ forms.autosuggestField({
+    id: 'channel-id-fr',
     label: 'Channel Id (French)',
     name: 'channelIdFr',
     instructions: 'Enter your webchat channel id. You can find this information in the embedded script.',
-    value: settings.channelIdFr
+    value: settings.channelIdFr,
+    suggestEnvVars: true
 })}}
 
-{{ forms.textField({
+{{ forms.autosuggestField({
+    id: 'channel-token-fr',
     label: 'Channel Token (French)',
     name: 'channelTokenFr',
     instructions: 'Enter your webchat channel token. You can find this information in the embedded script.',
-    value: settings.channelTokenFr
+    value: settings.channelTokenFr,
+    suggestEnvVars: true
 })}}
 
-{{ forms.textField({
+{{ forms.autosuggestField({
+    id: 'user-slug',
     label: 'User Slug',
     name: 'userSlug',
     instructions: 'Enter your user slug. You can find this information in your bot settings.',
     value: settings.userSlug,
-    placeholder: 'username'
+    suggestEnvVars: true
 })}}
 
-{{ forms.textField({
+{{ forms.autosuggestField({
+    id: 'bot-slug',
     label: 'Bot Slug',
     name: 'botSlug',
     instructions: 'Enter your bot slug.',
     value: settings.botSlug,
-    placeholder: 'botname'
+    suggestEnvVars: true
 })}}
 
-{{ forms.textField({
+{{ forms.autosuggestField({
+    id: 'bot-version',
     label: 'Bot Version',
     name: 'botVersion',
     instructions: 'Enter your bot version.',
     value: settings.botVersion,
-    placeholder: 'v1'
+    suggestEnvVars: true
 })}}
 
 {{ forms.textField({

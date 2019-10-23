@@ -1,4 +1,4 @@
-dateModified: 1571412522
+dateModified: 1571843248
 email:
   fromEmail: $SYSTEM_EMAIL_ADDRESS
   fromName: $SYSTEM_EMAIL_SENDER_NAME
@@ -2478,14 +2478,14 @@ plugins:
     settings:
       enabled: '1'
       apiURL: 'https://api.cai.tools.sap'
-      developerToken: 3849cd9bc0982978d2f3464b5f76abe2
-      channelTokenEn: 4af0f5ba0c2feb4f8516436d866daccf
-      channelIdEn: 60f9bb3d-eaee-413a-8fa3-3b28c62ee85e
-      channelTokenFr: ''
-      channelIdFr: ''
-      userSlug: francismawn
-      botSlug: intranet-bot
-      botVersion: v1
+      developerToken: $SAPBOT_DEV_TOKEN
+      channelTokenEn: $SAPBOT_CHANNEL_TOKEN_EN
+      channelIdEn: $SAPBOT_CHANNEL_ID_EN
+      channelTokenFr: $SAPBOT_CHANNEL_TOKEN_FR
+      channelIdFr: $SAPBOT_CHANNEL_ID_FR
+      userSlug: $SAPBOT_USER_SLUG
+      botSlug: $SAPBOT_BOT_SLUG
+      botVersion: $SAPBOT_BOT_VERSION
       weatherApiURL: 'https://api.openweathermap.org/data/2.5'
       weatherApiToken: 415efa24ed1e560c5e428f39df38c38c
 sections:

@@ -90,25 +90,11 @@
     {% block customScripts %}{% endblock %}
     {{ endBody() }}
 
-    {# Include chatbot if not on splash page and if enabled in the settings #}
-    {% set plugin = craft.app.plugins.getPlugin('sapbot', false) %}
-    {% if currentSite.handle != 'default' and plugin is defined and plugin('sapbot').settings.enabled %}
-    <script>
-        window.webchatMethods = {
-            // called at each user message
-            getMemory: (conversationId) => {
-                const memory = { set_language: "{{ shortlang }}" }
-                return { memory, merge: true }
-            }
-        }
-    </script>
-    <script src="/scripts/webchat.js"
-            channelId="{{ plugin('sapbot').settings.channelIdEn }}"
-            token="{{ plugin('sapbot').settings.channelTokenEn }}"
-            id="cai-webchat">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    {# Include webchat on all pages but the splash page #}
+    {% if currentSite.handle != 'default' %}
+        {% hook "sapbot.webchat" %}
     {% endif %}
+
 </body>
 
 </html>
