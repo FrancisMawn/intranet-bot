@@ -30,13 +30,16 @@ class MonitorController extends Controller
     {
         $this->requirePostRequest();
 
+        // Get the entry id from the request.
         $request = Craft::$app->getRequest();
         $id = (int) $request->post('id');
-        // @todo: Delete entry.
 
-        return $this->asJson([
-           'success' => true,
-        ]);
+        // Delete the entry.
+        Craft::$app->getDb()->createCommand()
+            ->delete(UnmatchedQuery::tableName(), ['id' => $id])
+            ->execute();
+
+        return $this->asJson(['success' => true]);
     }
 
     public function actionConversation()
