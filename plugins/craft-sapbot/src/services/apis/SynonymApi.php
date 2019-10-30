@@ -11,12 +11,16 @@ class SynonymApi extends BaseApi
 
     public function getAll(string $gazetteSlug, string $language = 'en')
     {
-        return $this->client->get("{$this->baseUrl()}/$gazetteSlug/synonyms", ['language' => $language])->synonyms;
+        return $this->client->get("{$this->baseUrl()}/$gazetteSlug/synonyms", [
+            'language' => $language
+        ])->synonyms;
     }
 
     public function get(string $gazetteSlug, string $synonymSlug, string $language = 'en')
     {
-        return $this->client->get("{$this->baseUrl()}/$gazetteSlug/synonyms/$synonymSlug", ['language' => $language])->synonyms;
+        return $this->client->get("{$this->baseUrl()}/$gazetteSlug/synonyms/$synonymSlug", [
+            'language' => $language
+        ])->synonyms;
     }
 
     public function create(string $gazetteSlug, string $synonym, string $language = 'en')
